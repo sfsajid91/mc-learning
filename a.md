@@ -1,79 +1,68 @@
-# Machine Learning in Healthcare: A Concise Analysis
+# Machine Learning in Healthcare: Classification and Regression Analysis
 
 ## Introduction
-
-This report presents two machine learning applications in healthcare: disease prediction from symptoms (classification) and medical insurance cost prediction (regression).
+This analysis applies machine learning to healthcare datasets: disease prediction from symptoms (classification) and medical insurance cost prediction (regression). Both tasks demonstrate the effectiveness of various algorithms, particularly tree-based models, in solving healthcare problems.
 
 ## Dataset Overview
-
-- **Disease Prediction Dataset**: 132 binary symptom features, 41 disease categories, 4,920 training samples
-- **Insurance Dataset**: Features include age, sex, BMI, children, smoking status, and region for 1,338 beneficiaries
+**Disease Prediction**: 132 binary symptom features across 41 disease categories with 4,920 training samples.
+**Insurance Costs**: 1,338 records with features like age, sex, BMI, children, smoking status, and region, predicting medical charges.
 
 ## Classification Task: Disease Prediction
 
-**Data Analysis**:
-The dataset showed varied distribution of diseases with unique symptom patterns.
-
-![Disease Distribution](charts/task1/disease_distribution.png)
-_Distribution of top 15 diseases_
-
-**Symptom-Disease Relationships**:
-Heatmap analysis revealed clear patterns of symptom co-occurrence for specific diseases.
+The analysis began with examining symptom distribution and their relationships to diseases:
 
 ![Symptom-Disease Relationship](charts/task1/symptom_disease_heatmap.png)
-_Relationships between symptoms and diseases_
+_Figure 1: Relationships between top symptoms and diseases_
 
-**Model Comparison**:
-Three algorithms were evaluated: Random Forest, SVM, and KNN. Random Forest performed best and was selected for fine-tuning.
+Three classification models were evaluated—Random Forest, SVM, and KNN:
 
 ![Model Comparison](charts/task1/model_comparison.png)
-_Performance comparison across metrics_
+_Figure 2: Classification model performance comparison_
 
-**Feature Importance**:
-The tuned Random Forest identified key symptoms crucial for accurate disease prediction.
+Random Forest emerged as the top performer, achieving near-perfect accuracy after hyperparameter optimization. Feature importance analysis identified the most predictive symptoms:
 
 ![Tuned Feature Importance](charts/task1/tuned_feature_importance.png)
-_Top 20 most important symptoms_
+_Figure 3: Top 20 most important symptoms for disease prediction_
 
 ## Regression Task: Insurance Cost Prediction
 
-**Data Analysis**:
-Initial exploration revealed right-skewed distribution of insurance charges and strong correlations between features.
-
-![Charges Distribution](charts/task2/charges_distribution.png)
-_Distribution of insurance charges_
-
-**Feature Relationships**:
-Analysis showed strong correlation between smoking status and charges, with positive correlations for age and BMI.
+Initial data exploration revealed the distribution of charges and relationships with features:
 
 ![Numerical Features vs Charges](charts/task2/numerical_features_vs_charges.png)
-_Relationships between numerical features and charges_
+_Figure 4: Relationships between numerical features and insurance charges_
 
-**Model Comparison**:
-Three regression algorithms were evaluated: Linear Regression, Random Forest, and Gradient Boosting, with Gradient Boosting performing best.
+![Categorical Features vs Charges](charts/task2/categorical_features_vs_charges.png)
+_Figure 5: Impact of categorical features on insurance charges_
+
+Three regression models were implemented—Linear Regression (R²: 0.784), Random Forest (R²: 0.866), and Gradient Boosting (R²: 0.879):
 
 ![Model Comparison by R²](charts/task2/model_comparison_R².png)
-_Model comparison by R² score_
+_Figure 6: Regression model comparison by R² score_
 
-**Feature Importance**:
-The tuned Gradient Boosting model revealed smoking status as the dominant factor affecting insurance costs.
+Gradient Boosting performed best and was further tuned to achieve R² of 0.882:
+
+![Tuned Gradient Boosting](charts/task2/tuned_gradient_boosting_actual_vs_predicted.png)
+_Figure 7: Actual vs Predicted charges for tuned Gradient Boosting_
+
+Feature importance analysis revealed smoking status as the dominant factor in insurance costs:
 
 ![Feature Importance](charts/task2/tuned_gradient_boosting_feature_importance.png)
-_Feature importance in the tuned model_
+_Figure 8: Feature importance in insurance cost prediction_
 
 ## Key Insights
 
-**Classification Task**:
-
-- Random Forest achieved exceptional accuracy, demonstrating that symptom patterns strongly predict diseases
-- Feature importance analysis provides valuable diagnostic indicators for healthcare professionals
+**Classification Task**: 
+- Symptom patterns highly predictive of specific diseases
+- Random Forest achieved excellent accuracy, demonstrating potential for diagnostic support
+- Feature importance analysis identified crucial symptoms for different conditions
 
 **Regression Task**:
-
-- Gradient Boosting achieved R² of 0.882 after tuning
-- Smoking dramatically impacts insurance costs, followed by BMI and age
-- Results provide actionable insights for insurance pricing and risk assessment
+- Lifestyle factors, especially smoking, dramatically impact insurance costs
+- Age and BMI show strong positive correlations with charges
+- Regional variations exist but have less impact than personal factors
 
 ## Conclusion
 
-Tree-based models (Random Forest and Gradient Boosting) excelled in both healthcare applications due to their ability to capture complex non-linear relationships. The classification task demonstrated how symptom patterns can accurately predict diseases, while the regression task quantified lifestyle factors' impact on healthcare costs. These insights benefit healthcare providers, insurance companies, and patients by enabling more informed decision-making in diagnosis and cost prediction.
+Tree-based models (Random Forest and Gradient Boosting) demonstrated superior performance in both healthcare tasks. For disease prediction, accurate symptom-based classification could support early diagnosis and treatment planning. For insurance costs, quantifying the impact of lifestyle factors provides actionable insights for risk assessment and personal health decisions.
+
+These applications show machine learning's potential to transform healthcare by enabling more accurate diagnoses and fairer insurance pricing based on quantifiable risk factors. The models' success suggests healthcare data's complex non-linear relationships are best captured by algorithms that can handle mixed data types and complex interactions.
